@@ -31,7 +31,7 @@ const logInUser = async (req, res) => {
     if (matchedPassword) {
       // visar att personen är inloggad så skickas token med
       const token = jwt.sign({ id: user.id }, process.env.MY_SECRET_KEY, {
-        expiresIn: 600,
+        expiresIn: 120,
       });
       result.success = true;
       result.token = token;
