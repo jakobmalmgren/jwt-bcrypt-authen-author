@@ -30,9 +30,15 @@ const logInUser = async (req, res) => {
     };
     if (matchedPassword) {
       // visar att personen är inloggad så skickas token med
-      const token = jwt.sign({ id: user.id }, process.env.MY_SECRET_KEY, {
-        expiresIn: 120,
-      });
+      const token = jwt.sign(
+        { id: user.id, role: "user" },
+        process.env.MY_SECRET_KEY,
+        {
+          expiresIn: 600,
+        }
+      );
+      console.log("token :", token);
+
       result.success = true;
       result.token = token;
       result.message = "inloggad";
